@@ -57,12 +57,13 @@ def analyse_tickers():
     # Topic modeling + word clouds
     topics = extract_topics_per_company(risk_texts, num_clusters=3)
     topic_gallery = {
-        ticker: [
-            f"data:image/png;base64,{generate_wordcloud_image({i: cluster})}"
-            for i, cluster in enumerate(topics[ticker])
-        ]
-        for ticker in topics
+        ticker: generate_wordcloud_image({
+            f"cluster_{cluster_id}": keywords
+            for cluster_id, keywords in topic_clusters.items()
+        })
+        for ticker, topic_clusters in topics.items()
     }
+
 
     return (
         f"Analysis complete for: {', '.join(selected_tickers)}",
@@ -83,6 +84,7 @@ with gr.Blocks() as demo:
     analyse_btn = gr.Button("Analyse")
     result_text = gr.Textbox(label="Output", interactive=False)
     chart_output = gr.Plot(label="Sentiment Distribution Chart")
+
     summary_box = gr.Textbox(label="Summary of Risk Factors", lines=15, interactive=False)
 
     # Topic model result state and output

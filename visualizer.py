@@ -2,8 +2,11 @@ import plotly.graph_objects as go
 from typing import Dict
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
+from PIL import Image
+import numpy as np
 from io import BytesIO
 import base64
+from typing import List
 
 def plot_sentiment_distribution(company_sentiments: Dict[str, Dict]) -> go.Figure:
     """
@@ -40,15 +43,11 @@ def plot_sentiment_distribution(company_sentiments: Dict[str, Dict]) -> go.Figur
     return fig
 
 
-def generate_wordcloud_image(topics_dict):
-    from wordcloud import WordCloud
-
-    all_words = []
-    for cluster_keywords in topics_dict.values():
-        all_words.extend([str(word) for word in cluster_keywords])  # ensure all are strings
-
-    text = " ".join(all_words)
-    wc = WordCloud(width=800, height=400, background_color="white").generate(text)
-
-    return wc.to_array()
-
+def generate_wordcloud_image(cluster_keywords: dict) -> List[Image.Image]:
+    images = []
+    for cluster_id, keywords in cluster_keywords.items():
+        text = ' '.join(keywords)
+        wordcloud = WordCloud(width=600, height=400, background_color='white').generate(text)
+        img = wordcloud.to_image()
+        images.append(img)
+    return images
