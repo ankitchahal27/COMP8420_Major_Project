@@ -7,6 +7,9 @@ from app.summarizer import summarize_risk_text
 from app.topics import extract_topics_per_company
 
 import gradio as gr
+from PIL import Image
+import base64
+from io import BytesIO
 
 selected_tickers = []
 
@@ -57,12 +60,16 @@ def analyse_tickers():
     # Topic modeling + word clouds
     topics = extract_topics_per_company(risk_texts, num_clusters=3)
     topic_gallery = {
-        ticker: generate_wordcloud_image({
-            f"cluster_{cluster_id}": keywords
-            for cluster_id, keywords in topic_clusters.items()
-        })
+        ticker: [
+            (img, f"{ticker} - Theme {i+1}")
+            for i, img in enumerate(generate_wordcloud_image({
+                f"cluster_{cluster_id}": keywords
+                for cluster_id, keywords in topic_clusters.items()
+            }))
+        ]
         for ticker, topic_clusters in topics.items()
     }
+
 
 
     return (
