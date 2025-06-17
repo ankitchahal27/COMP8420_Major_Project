@@ -56,7 +56,7 @@ You can analyze up to **5 tickers at a time**. Here’s how to add tickers like 
    - Input: `msft` → click **Add Ticker** → Status: `MSFT added`
    - Input: `amzn` → click **Add Ticker** → Status: `AMZN added`
 
-Once done, proceed with analysis using the next available button in the UI.
+Once done, proceed with analysis using the "Analyse" button in the UI.
 
 ---  
 
