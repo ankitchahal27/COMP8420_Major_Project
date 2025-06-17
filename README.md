@@ -9,7 +9,7 @@ The goal is to help users quickly understand and compare risk narratives across 
 
 ---
 
-## 🚀 How to Run
+##  How to Run
 
 1. **Install dependencies** (recommended in a virtual environment):
    ```bash
@@ -39,10 +39,26 @@ You can run any test file using:
 ```bash
 python test_<module>.py
 ```
+---
 
-Example:
-```bash
-python test_sentiment.py
-```
+##  Example: How to Add Tickers
+
+You can analyze up to **5 tickers at a time**. Here’s how to add tickers like `AAPL`, `MSFT`, and `AMZN`:
+
+### Step-by-Step Instructions
+
+1. **Enter a ticker symbol** (e.g., `aapl`) in the input box labeled `Enter S&P 500 Ticker`.
+2. Click the **"Add Ticker"** button.
+3. Confirm the ticker is added — it will appear in the `Selected Tickers` list below.
+4. Repeat steps 1–3 for each additional ticker.
+5. Example sequence:
+   - Input: `aapl` → click **Add Ticker** → Status: `AAPL added`
+   - Input: `msft` → click **Add Ticker** → Status: `MSFT added`
+   - Input: `amzn` → click **Add Ticker** → Status: `AMZN added`
+
+Once done, proceed with analysis using the next available button in the UI.
+
+---  
+
 
 
