@@ -1,0 +1,11 @@
+gradio
+transformers
+torch
+plotly
+scikit-learn
+matplotlib
+numpy
+nltk
+wordcloud
+Pillow
+edgartools
